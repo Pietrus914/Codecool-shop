@@ -90,6 +90,14 @@ table th, #totalPrice, #totalPriceLabel  {
     font-weight: bolder ;
 }
 
+#optionLine {
+    display: flex;
+    align-content: center;
+    justify-content: flex-end;
+    /*padding: 0 5% 2rem 5%;*/
+
+}
+
 
 
 #totalPriceLabel {
