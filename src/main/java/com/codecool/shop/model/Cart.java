@@ -5,21 +5,21 @@ import java.util.List;
 
 public class Cart {
 
-    private List<ProductLine> products;
+    private List<ProductLine> productLines;
 
     public Cart(){
-        this.products = new ArrayList<>();
+        this.productLines = new ArrayList<>();
     }
 
 
     public void add(ProductLine productLine){
-        products.add(productLine);
+        productLines.add(productLine);
     }
 
 
     public float getTotalPrice(){
 
-        float totalPrice = products.stream()
+        float totalPrice = productLines.stream()
                 .map(prod -> prod.getTotalPrice())
                 .reduce(0.0f, (a,b) -> a + b);
 
@@ -28,11 +28,11 @@ public class Cart {
 
 
 
-    public List<ProductLine> getProducts() {
-        return products;
+    public List<ProductLine> getProductLines() {
+        return productLines;
     }
 
-    public void setProducts(List<ProductLine> products) {
-        this.products = products;
+    public void setProductLines(List<ProductLine> productLines) {
+        this.productLines = productLines;
     }
 }
