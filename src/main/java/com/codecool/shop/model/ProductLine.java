@@ -22,6 +22,10 @@ public class ProductLine {
         return quantity * product.getDefaultPrice();
     }
 
+    public String getTotalPriceString(){
+        return getTotalPrice() + " " + product.getDefaultCurrency();
+    }
+
 
     public Product getProduct() {
         return product;

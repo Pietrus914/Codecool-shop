@@ -26,6 +26,10 @@ public class Cart {
         return totalPrice;
     }
 
+    public String getTotalPriceString(){
+        return ""+ getTotalPrice() + " " + productLines.get(0).getProduct().getDefaultCurrency();
+    }
+
 
 
     public List<ProductLine> getProductLines() {
