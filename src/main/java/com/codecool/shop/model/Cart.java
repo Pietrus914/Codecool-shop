@@ -12,6 +12,11 @@ public class Cart {
     }
 
 
+    public void add(ProductLine productLine){
+        products.add(productLine);
+    }
+
+
     public float getTotalPrice(){
 
         float totalPrice = products.stream()
@@ -20,6 +25,8 @@ public class Cart {
 
         return totalPrice;
     }
+
+
 
     public List<ProductLine> getProducts() {
         return products;

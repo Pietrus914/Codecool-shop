@@ -8,6 +8,12 @@ public class ProductLine {
 
     public ProductLine(Product product){
         this.product = product;
+        this.quantity = 1;
+    }
+
+    public ProductLine(Product product, int quantity){
+        this.product = product;
+        this.quantity = quantity;
     }
 
 
