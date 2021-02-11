@@ -45,6 +45,12 @@ class CartTest {
 
         assertEquals(expectedQuantityOfProductLine2, returnedQuantity);
 
+        cart.decreaseQuantity("productB");
+        int expectedCartSize = 1;
+        int returnedCartSize = cart.getSize();
+
+        assertEquals(expectedCartSize,returnedCartSize);
+
     }
 
 

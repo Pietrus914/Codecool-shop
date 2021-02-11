@@ -63,7 +63,7 @@
 
                         <td class="tableField" id="productName" th:text="${productLine.product.getName}">Product</td>
                         <td class="tableField" id="deliveryTime" > 48h </td>
-                        <td class="tableField" id="defaultPrice" th:text="${productLine.product.getPrice()}">Price</td>
+                        <td class="tableField" id="defaultPrice" th:text="${productLine.product.getPrice}">Price</td>
                         <td class="tableField" id="quantityBox">
                             <a th:href="@{/cart/update(name=${productLine.product.getName}, action='decrease')}" >
                                 <i class="fas fa-minus"></i>
