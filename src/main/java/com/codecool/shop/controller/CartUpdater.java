@@ -14,8 +14,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
-@WebServlet(urlPatterns = {"/cart/remove"})
-public class RemoverFromCart extends HttpServlet {
+@WebServlet(urlPatterns = {"/cart/update"})
+public class CartUpdater extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -26,16 +26,9 @@ public class RemoverFromCart extends HttpServlet {
             cart.remove(req.getParameter("name"));
         } else if (action.equals("decrease")){
             cart.decreaseQuantity(req.getParameter("name"));
+        } else if (action.equals("increase")){
+            cart.increaseQuantity(req.getParameter("name"));
         }
-
-
-
-//        TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
-//        WebContext context = new WebContext(req, resp, req.getServletContext());
-//        context.setVariable("productsLines", cart.getProductLines());
-//        context.setVariable("cart", cart);
-//
-//        engine.process("cart/cartView.html", context, resp.getWriter());
 
         resp.sendRedirect("/cart");
     }

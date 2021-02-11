@@ -65,15 +65,15 @@
                         <td class="tableField" id="deliveryTime" > 48h </td>
                         <td class="tableField" id="defaultPrice" th:text="${productLine.product.getPrice()}">Price</td>
                         <td class="tableField" id="quantityBox">
-                            <a th:href="@{/cart/remove(name=${productLine.product.getName}, action='decrease')}" >
+                            <a th:href="@{/cart/update(name=${productLine.product.getName}, action='decrease')}" >
                                 <i class="fas fa-minus"></i>
                             </a>
                             <div id="quantity" th:text="${productLine.getQuantity}"> Quantity </div>
-                            <a href="#" ><i class="fas fa-plus"></i></a>
+                            <a th:href="@{/cart/update(name=${productLine.product.getName}, action='increase')}" ><i class="fas fa-plus"></i></a>
                         </td>
                         <td class="tableField" id="subtotal" th:text="${productLine.getTotalPriceString}">SubTotalPrice</td>
                         <td class="tableField" id="remove" >
-                            <a th:href="@{/cart/remove(name=${productLine.product.getName}, action='remove')}" >
+                            <a th:href="@{/cart/update(name=${productLine.product.getName}, action='remove')}" >
                                 <i class="far fa-trash-alt"></i>
                             </a>
                         </td>

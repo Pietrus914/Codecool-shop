@@ -70,4 +70,26 @@ class CartTest {
 
     }
 
+    @Test
+    void givenProductName_whenIncrease_ReturnedCartSizeIncreasedBy1(){
+        testProductLine2.setQuantity(2);
+        Cart cart = new Cart();
+        cart.add(testProductLine);
+        cart.add(testProductLine2);
+
+        int expectedQuantityOfTestProductLine2 = 3;
+
+        cart.increaseQuantity("productB");
+        int returnedQuantity = cart.getProductLines().get("productB").getQuantity();
+
+        assertEquals(expectedQuantityOfTestProductLine2, returnedQuantity);
+
+        cart.increaseQuantity("productA");
+        int expectedQuantityOfTestProductLine = 2;
+        returnedQuantity = cart.getProductLines().get("productA").getQuantity();
+
+        assertEquals(expectedQuantityOfTestProductLine,returnedQuantity);
+
+    }
+
 }

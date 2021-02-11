@@ -87,8 +87,11 @@ public class Cart {
         } else if (line.getQuantity() == 1){
             remove(name);
         }
+    }
 
-
+    public void increaseQuantity(String name){
+        ProductLine line = productLines.get(name);
+        line.changeQuantity(1);
     }
 
     public int getSize(){
