@@ -53,7 +53,7 @@ public class Cart {
         if (line.getQuantity() > 1){
             productLines.get(name).changeQuantity(-1);
         } else if (line.getQuantity() == 1){
-            remove(name);
+            productLines.remove(name);
         }
     }
 

@@ -19,6 +19,8 @@ public class CartUpdater extends HttpServlet {
         HttpSession session = req.getSession(false);
         Cart cart = (Cart) session.getAttribute("cart");
         String action = req.getParameter("action");
+        System.out.println("action: " +action);
+        System.out.println("Product: " +req.getParameter("name"));
         if (action.equals("remove")){
             cart.remove(req.getParameter("name"));
         } else if (action.equals("decrease")){
@@ -27,6 +29,7 @@ public class CartUpdater extends HttpServlet {
             cart.increaseQuantity(req.getParameter("name"));
         }
 
+        session.setAttribute("cart", cart);
         resp.sendRedirect("/cart");
     }
 }
