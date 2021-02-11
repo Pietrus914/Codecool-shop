@@ -54,7 +54,7 @@
                         <th class="tableHeadField" >Price</th>
                         <th class="tableHeadField" >Qty</th>
                         <th class="tableHeadField" >Subtotal</th>
-                        <th class="tableHeadField" >Delete</th>
+                        <th class="tableHeadField" ></th>
 
                     </tr>
                 </thead>
@@ -64,9 +64,13 @@
                         <td class="tableField" id="productName" th:text="${productLine.product.getName}">Product</td>
                         <td class="tableField" id="deliveryTime" > 48h </td>
                         <td class="tableField" id="defaultPrice" th:text="${productLine.product.getPrice()}">Price</td>
-                        <td class="tableField" id="quantity" th:text="${productLine.getQuantity}">Quantity</td>
+                        <td class="tableField" id="quantityBox">
+                            <a href="#" ><i class="fas fa-minus"></i></a>
+                            <div id="quantity" th:text="${productLine.getQuantity}"> Quantity </div>
+                            <a href="#" ><i class="fas fa-plus"></i></a>
+                        </td>
                         <td class="tableField" id="subtotal" th:text="${productLine.getTotalPriceString}">SubTotalPrice</td>
-                        <td class="tableField" id="remove" ><button>Remove</button></td>
+                        <td class="tableField" id="remove" ><a href="#" ><i class="far fa-trash-alt"></i></a></td>
                     </tr>
                     <tr>
                         <td id="totalPriceLabel" colspan="4">TOTAL PRICE:  </td>

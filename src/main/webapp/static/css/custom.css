@@ -114,17 +114,37 @@ table th, #totalPrice, #totalPriceLabel  {
     /*margin: 0 auto;*/
 }
 
+.statusLine .fas {
+    font-size: 1.5rem;
+}
+
 /*.statusLine > div:has(i) {*/
 /*    flex: 1;*/
 /*}*/
 
-
-.fas fa-angle-right {
-    color: #1e7e34;
+.far , .fas {
+    /*text-decoration: none;*/
+    font-size: 0.8rem;
+    color: #28a745;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    /*height: 1em;*/
     /*text-align: center;*/
 }
 
 
+
+/*i {*/
+/*    font-size: 70%;*/
+/*}*/
+
+#quantityBox {
+    display: flex;
+}
+
+
+
+
 div .active {
-    background-color: #1e7e34;
+    background-color: #28a745;
 }
