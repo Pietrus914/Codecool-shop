@@ -59,7 +59,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="productLine : ${productsLines}" >
+                    <tr th:each="productLine : ${productsLines.values()}" >
 
                         <td class="tableField" id="productName" th:text="${productLine.product.getName}">Product</td>
                         <td class="tableField" id="deliveryTime" > 48h </td>
@@ -70,7 +70,7 @@
                             <a href="#" ><i class="fas fa-plus"></i></a>
                         </td>
                         <td class="tableField" id="subtotal" th:text="${productLine.getTotalPriceString}">SubTotalPrice</td>
-                        <td class="tableField" id="remove" ><a href="#" ><i class="far fa-trash-alt"></i></a></td>
+                        <td class="tableField" id="remove" ><a th:href="@{/cart/remove(name=${productLine.product.getName})}" ><i class="far fa-trash-alt"></i></a></td>
                     </tr>
                     <tr>
                         <td id="totalPriceLabel" colspan="4">TOTAL PRICE:  </td>

@@ -31,4 +31,43 @@ class CartTest {
 
     }
 
+    @Test
+    void givenProductName_whenDecrease_ReturnedDecreasedQuantityInProperProductLine(){
+        testProductLine2.setQuantity(2);
+        Cart cart = new Cart();
+        cart.add(testProductLine);
+        cart.add(testProductLine2);
+
+        int expectedQuantityOfProductLine2 = 1;
+
+        cart.decreaseQuantity("productB");
+        int returnedQuantity = cart.getProductLines().get(testProductLine2.getProduct().getName()).getQuantity();
+
+        assertEquals(expectedQuantityOfProductLine2, returnedQuantity);
+
+    }
+
+
+    @Test
+    void givenProductName_whenRemove_ReturnedCartSizeDecreasedBy1(){
+        testProductLine2.setQuantity(2);
+        Cart cart = new Cart();
+        cart.add(testProductLine);
+        cart.add(testProductLine2);
+
+        int expectedSize = 1;
+
+        cart.remove("productB");
+        int returnedSize = cart.getSize();
+
+        assertEquals(expectedSize, returnedSize);
+
+        cart.remove("productA");
+        expectedSize = 0;
+        returnedSize = cart.getSize();
+
+        assertEquals(expectedSize,returnedSize);
+
+    }
+
 }

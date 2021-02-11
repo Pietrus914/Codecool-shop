@@ -1,6 +1,7 @@
 package com.codecool.shop.model;
 
 public class ProductLine {
+    private static int counter = 0;
 
     private Product product;
     private int quantity;
@@ -41,5 +42,9 @@ public class ProductLine {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public void changeQuantity(int i) {
+        setQuantity(quantity + i);
     }
 }
