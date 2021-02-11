@@ -76,12 +76,12 @@
     width: 100%;
 }
 
-table td, th {
+table td, table th{
     padding-right: 5rem;
     text-align: center;
 }
 
-table thead {
+table thead, table tbody, table tr   {
     width: 100%;
 }
 
@@ -98,8 +98,33 @@ table th, #totalPrice, #totalPriceLabel  {
 
 }
 
-
-
 #totalPriceLabel {
     text-align: right;
+}
+
+.statusLine {
+    display: flex;
+    justify-content: stretch;
+}
+
+.statusLine > div {
+    flex: 1;
+    background-color: #e9ecef;
+    text-align: center;
+    /*margin: 0 auto;*/
+}
+
+/*.statusLine > div:has(i) {*/
+/*    flex: 1;*/
+/*}*/
+
+
+.fas fa-angle-right {
+    color: #1e7e34;
+    /*text-align: center;*/
+}
+
+
+div .active {
+    background-color: #1e7e34;
 }
