@@ -60,3 +60,46 @@
 {
     margin: 0 0 11px;
 }
+
+#cartContainer {
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+}
+
+#content {
+    padding: 3rem;
+}
+
+.table {
+    display: block;
+    width: 100%;
+}
+
+table td, th {
+    padding-right: 5rem;
+    text-align: center;
+}
+
+table thead {
+    width: 100%;
+}
+
+table th, #totalPrice, #totalPriceLabel  {
+    font-size: larger;
+    font-weight: bolder ;
+}
+
+#optionLine {
+    display: flex;
+    align-content: center;
+    justify-content: flex-end;
+    /*padding: 0 5% 2rem 5%;*/
+
+}
+
+
+
+#totalPriceLabel {
+    text-align: right;
+}
