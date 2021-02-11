@@ -21,7 +21,14 @@ public class RemoverFromCart extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(false);
         Cart cart = (Cart) session.getAttribute("cart");
-        cart.remove(req.getParameter("name"));
+        String action = req.getParameter("action");
+        if (action.equals("remove")){
+            cart.remove(req.getParameter("name"));
+        } else if (action.equals("decrease")){
+            cart.decreaseQuantity(req.getParameter("name"));
+        }
+
+
 
 //        TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
 //        WebContext context = new WebContext(req, resp, req.getServletContext());

@@ -34,8 +34,8 @@ public class ProductController extends HttpServlet {
 
         ProductCategory category = new ProductCategory("tablet", "departament", "descr");
 
-        Product prodA = new Product("productA", 2.00f, "PLN", "description", category, supplier1 );
-        Product prodB = new Product("productB", 4.00f, "PLN", "description", category,supplier2 );
+        Product prodA = new Product("productA", 2.00f, "USD", "description", category, supplier1 );
+        Product prodB = new Product("productB", 4.00f, "USD", "description", category,supplier2 );
 
         ProductLine testProductLine = new ProductLine(prodA);
         ProductLine testProductLine2 = new ProductLine(prodB);

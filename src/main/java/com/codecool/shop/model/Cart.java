@@ -13,11 +13,12 @@ public class Cart {
 //        this.productLines = new ArrayList<>();
 //    }
 
-
+    private String currency;
     private Map<String ,ProductLine> productLines;
 
     public Cart(){
         this.productLines = new HashMap();
+        currency = "USD";
     }
 
     public void add(ProductLine productLine){
@@ -45,7 +46,7 @@ public class Cart {
     }
 
     public String getTotalPriceString(){
-        return ""+ getTotalPrice() + " " + productLines.values().iterator().next().getProduct().getDefaultCurrency();
+        return ""+ getTotalPrice() + " " + currency ;
     }
 
 
