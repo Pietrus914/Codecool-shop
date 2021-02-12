@@ -25,26 +25,28 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session=req.getSession();
+        if (session.getAttribute("cart") == null){
+            Cart cart = new Cart();
 
-        Cart cart = new Cart();
+            //        *************for testing only ***********
+            Supplier supplier1 = new Supplier("supplierFirst", "desc");
+            Supplier supplier2 = new Supplier("supplierSecond", "desc");
 
-        //        *************for testing only ***********
-//        Supplier supplier1 = new Supplier("supplierFirst", "desc");
-//        Supplier supplier2 = new Supplier("supplierSecond", "desc");
-//
-//        ProductCategory category = new ProductCategory("tablet", "departament", "descr");
-//
-//        Product prodA = new Product("productA", 2.00f, "PLN", "description", category, supplier1 );
-//        Product prodB = new Product("productB", 4.00f, "PLN", "description", category,supplier2 );
-//
-//        ProductLine testProductLine = new ProductLine(prodA);
-//        ProductLine testProductLine2 = new ProductLine(prodB);
-//        testProductLine2.setQuantity(2);
-//        cart.add(testProductLine);
-//        cart.add(testProductLine2);
+            ProductCategory category = new ProductCategory("tablet", "departament", "descr");
+
+            Product prodA = new Product("productA", 2.00f, "USD", "description", category, supplier1 );
+            Product prodB = new Product("productB", 4.00f, "USD", "description", category,supplier2 );
+
+            ProductLine testProductLine = new ProductLine(prodA);
+            ProductLine testProductLine2 = new ProductLine(prodB);
+            testProductLine2.setQuantity(2);
+            cart.add(testProductLine);
+            cart.add(testProductLine2);
 //        *************end ***********
 
-        session.setAttribute("cart", cart);
+            session.setAttribute("cart", cart);
+        }
+
 
 
         ProductDao productDataStore = ProductDaoMem.getInstance();

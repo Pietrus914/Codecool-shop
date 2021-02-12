@@ -54,19 +54,29 @@
                         <th class="tableHeadField" >Price</th>
                         <th class="tableHeadField" >Qty</th>
                         <th class="tableHeadField" >Subtotal</th>
-                        <th class="tableHeadField" >Delete</th>
+                        <th class="tableHeadField" ></th>
 
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="productLine : ${productsLines}" >
+                    <tr th:each="productLine : ${productsLines.values()}" >
 
                         <td class="tableField" id="productName" th:text="${productLine.product.getName}">Product</td>
                         <td class="tableField" id="deliveryTime" > 48h </td>
-                        <td class="tableField" id="defaultPrice" th:text="${productLine.product.getPrice()}">Price</td>
-                        <td class="tableField" id="quantity" th:text="${productLine.getQuantity}">Quantity</td>
+                        <td class="tableField" id="defaultPrice" th:text="${productLine.product.getPrice}">Price</td>
+                        <td class="tableField" id="quantityBox">
+                            <a th:href="@{/cart/update(name=${productLine.product.getName}, action='decrease')}" >
+                                <i class="fas fa-minus"></i>
+                            </a>
+                            <div id="quantity" th:text="${productLine.getQuantity}"> Quantity </div>
+                            <a th:href="@{/cart/update(name=${productLine.product.getName}, action='increase')}" ><i class="fas fa-plus"></i></a>
+                        </td>
                         <td class="tableField" id="subtotal" th:text="${productLine.getTotalPriceString}">SubTotalPrice</td>
-                        <td class="tableField" id="remove" ><button>Remove</button></td>
+                        <td class="tableField" id="remove" >
+                            <a th:href="@{/cart/update(name=${productLine.product.getName}, action='remove')}" >
+                                <i class="far fa-trash-alt"></i>
+                            </a>
+                        </td>
                     </tr>
                     <tr>
                         <td id="totalPriceLabel" colspan="4">TOTAL PRICE:  </td>

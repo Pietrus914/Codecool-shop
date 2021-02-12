@@ -1,42 +1,70 @@
 package com.codecool.shop.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Cart {
 
-    private List<ProductLine> productLines;
+
+
+    private String currency;
+    private Map<String, ProductLine> productLines;
 
     public Cart(){
-        this.productLines = new ArrayList<>();
+        this.productLines = new HashMap<String, ProductLine>();
+        currency = "USD";
     }
 
-
     public void add(ProductLine productLine){
-        productLines.add(productLine);
+        productLines.put(productLine.getProduct().getName(), productLine);
     }
 
 
     public float getTotalPrice(){
 
-        float totalPrice = productLines.stream()
-                .map(prod -> prod.getTotalPrice())
+        float totalPrice = productLines.values().stream()
+                .map(v -> v.getTotalPrice())
                 .reduce(0.0f, (a,b) -> a + b);
 
         return totalPrice;
     }
 
     public String getTotalPriceString(){
-        return ""+ getTotalPrice() + " " + productLines.get(0).getProduct().getDefaultCurrency();
+        return ""+ getTotalPrice() + " " + currency ;
     }
 
 
 
-    public List<ProductLine> getProductLines() {
+    public Map<String, ProductLine> getProductLines() {
         return productLines;
     }
 
-    public void setProductLines(List<ProductLine> productLines) {
+    public void setProductLines(Map<String, ProductLine> productLines) {
         this.productLines = productLines;
     }
+
+
+    public void remove(String name){
+            productLines.remove(name);
+    }
+
+    public void decreaseQuantity(String name){
+        ProductLine line = productLines.get(name);
+        if (line.getQuantity() > 1){
+            productLines.get(name).changeQuantity(-1);
+        } else if (line.getQuantity() == 1){
+            productLines.remove(name);
+        }
+    }
+
+    public void increaseQuantity(String name){
+        ProductLine line = productLines.get(name);
+        line.changeQuantity(1);
+    }
+
+    public int getSize(){
+        return productLines.size();
+    }
+
+
 }
