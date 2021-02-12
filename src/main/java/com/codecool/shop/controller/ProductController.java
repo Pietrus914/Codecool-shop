@@ -24,6 +24,9 @@ public class ProductController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        ProductDao productDataStore = ProductDaoMem.getInstance();
+        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
+
         HttpSession session=req.getSession();
         if (session.getAttribute("cart") == null){
             Cart cart = new Cart();
@@ -36,6 +39,8 @@ public class ProductController extends HttpServlet {
 
             Product prodA = new Product("productA", 2.00f, "USD", "description", category, supplier1 );
             Product prodB = new Product("productB", 4.00f, "USD", "description", category,supplier2 );
+            productDataStore.add(prodA);
+            productDataStore.add(prodB);
 
             ProductLine testProductLine = new ProductLine(prodA);
             ProductLine testProductLine2 = new ProductLine(prodB);
@@ -49,8 +54,7 @@ public class ProductController extends HttpServlet {
 
 
 
-        ProductDao productDataStore = ProductDaoMem.getInstance();
-        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
+
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());

@@ -29,26 +29,34 @@
     <script src="https://kit.fontawesome.com/05de84e1ca.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="jumbotron text-center">
+<div class="customJumbotron jumbotron text-center">
     <h2>CART</h2>
 </div>
-<div id="optionLine" >
-    <div class="card-text">
-        <a class="btn btn-success" href="/">Back</a>
-    </div>
+
 </div>
-<div th:replace="cart/status.html :: status(active='products')">
+<div class="container">
+    <div id="optionLine" >
+        <div class="card-text">
+            <a class="btn btn-success" href="/cart">Cart</a>
+            <span class="cartQuantity" th:if="${cart.getSize > 0}" th:text="${cart.getQuantity}">Quantity</span>
+
+        </div>
+        <div class="card-text">
+            <a class="btn btn-success" href="/">Back</a>
+        </div>
+    </div>
+    <div th:replace="cart/status.html :: status(active='products')"></div>
 
 </div>
 
 
 <div class="container">
-    <div id="cartContainer">
-        <div id="content">
+<!--    <div id="cartContainer">-->
+<!--        <div id="content">-->
             <table class="table">
                 <thead>
                     <tr>
-
+<!--                        <th class="tableHeadField"></th>-->
                         <th class="tableHeadField">Product</th>
                         <th class="tableHeadField" >Delivery time</th>
                         <th class="tableHeadField" >Price</th>
@@ -60,7 +68,7 @@
                 </thead>
                 <tbody>
                     <tr th:each="productLine : ${productsLines.values()}" >
-
+<!--                        <td class="tableField" id="imageCol" > <img class="" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${productLine.product.id} + '.jpg'" alt="" /> </td>-->
                         <td class="tableField" id="productName" th:text="${productLine.product.getName}">Product</td>
                         <td class="tableField" id="deliveryTime" > 48h </td>
                         <td class="tableField" id="defaultPrice" th:text="${productLine.product.getPrice}">Price</td>
@@ -80,16 +88,16 @@
                     </tr>
                     <tr>
                         <td id="totalPriceLabel" colspan="4">TOTAL PRICE:  </td>
-                        <td id="totalPrice" th:text="${cart.getTotalPriceString()}">TotalPrice</td>
+                        <td id="totalPrice" th:text="${cart.getTotalPriceString}">TotalPrice</td>
                         <td></td>
                     </tr>
 
                 </tbody>
             </table>
-        </div>
+<!--        </div>-->
 <!--        <div>TOTAL :  </div>-->
 <!--        <div id="totalPrice" th:text="${cart.getTotalPriceString()}">TotalPrice</div>-->
-    </div>
+<!--    </div>-->
 </div>
 
 
