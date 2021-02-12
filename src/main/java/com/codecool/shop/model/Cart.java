@@ -62,6 +62,13 @@ public class Cart {
         line.changeQuantity(1);
     }
 
+    public int getQuantity() {
+        int quantity = productLines.values().stream()
+                .map(line -> line.getQuantity())
+                .reduce(0, (a,b) -> a+b);
+        return quantity;
+    }
+
     public int getSize(){
         return productLines.size();
     }

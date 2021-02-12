@@ -31,12 +31,14 @@
 
 <body>
 
-<div class="jumbotron text-center">
+<div class="customJumbotron jumbotron text-center">
     <h1>Codecool Shop</h1>
+
 </div>
 <div id="optionLine" >
     <div class="card-text">
         <a class="btn btn-success" href="/cart">Cart</a>
+        <span class="cartQuantity" th:if="${cart.getSize > 0}" th:text="${cart.getQuantity}">Quantity</span>
     </div>
 </div>
 

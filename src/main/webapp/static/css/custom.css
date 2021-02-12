@@ -94,6 +94,7 @@ table th, #totalPrice, #totalPriceLabel  {
     display: flex;
     align-content: center;
     justify-content: flex-end;
+    padding: 2px 2em;
     /*padding: 0 5% 2rem 5%;*/
 
 }
@@ -147,4 +148,24 @@ table th, #totalPrice, #totalPriceLabel  {
 
 div .active {
     background-color: #28a745;
+}
+
+.jumbotron.customJumbotron {
+    margin-bottom: 0;
+}
+
+.cartQuantity {
+    display: block;
+    position: relative;
+    background-color: #28a745;
+    top: -16%;
+    left: 65%;
+    z-index: 2;
+    text-align: center;
+    font-size: smaller;
+    color: #fff;
+    border: #2b9443 solid;
+    border-radius: 50%;
+    width: 1.5em;
+    height: 1.5em;
 }
