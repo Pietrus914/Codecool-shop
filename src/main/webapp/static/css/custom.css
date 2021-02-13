@@ -72,8 +72,10 @@
 }
 
 .table {
-    display: block;
+    /*display: block;*/
     width: 100%;
+    table-layout: initial;
+    margin-top: 3rem;
 }
 
 table td, table th{
@@ -90,12 +92,20 @@ table th, #totalPrice, #totalPriceLabel  {
     font-weight: bolder ;
 }
 
+
+
 #optionLine {
     display: flex;
     align-content: center;
     justify-content: flex-end;
+    /*padding: 2px 2em;*/
     /*padding: 0 5% 2rem 5%;*/
 
+
+}
+
+#optionLine .btn {
+    margin-left: 2em;
 }
 
 #totalPriceLabel {
@@ -105,6 +115,7 @@ table th, #totalPrice, #totalPriceLabel  {
 .statusLine {
     display: flex;
     justify-content: stretch;
+    margin-top: 1rem;
 }
 
 .statusLine > div {
@@ -148,3 +159,32 @@ table th, #totalPrice, #totalPriceLabel  {
 div .active {
     background-color: #28a745;
 }
+
+.jumbotron.customJumbotron {
+    margin-bottom: 0;
+}
+
+.cartQuantity {
+    display: block;
+    position: relative;
+    background-color: #31bc51;
+    top: -16%;
+    left: 70%;
+    z-index: 2;
+    text-align: center;
+    font-size: smaller;
+    color: #fff;
+    border: #2b9443 solid 0.1em;
+    box-sizing: initial;
+    border-radius: 50%;
+    width: 1.5em;
+    height: 1.5em;
+    line-height: 1.5em;
+
+}
+
+.imageCol {
+    max-width: 20em;
+    height: auto;
+}
+
