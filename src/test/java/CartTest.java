@@ -31,4 +31,71 @@ class CartTest {
 
     }
 
+    @Test
+    void givenProductName_whenDecrease_ReturnedDecreasedQuantityInProperProductLine(){
+        testProductLine2.setQuantity(2);
+        Cart cart = new Cart();
+        cart.add(testProductLine);
+        cart.add(testProductLine2);
+
+        int expectedQuantityOfProductLine2 = 1;
+
+        cart.decreaseQuantity("productB");
+        int returnedQuantity = cart.getProductLines().get(testProductLine2.getProduct().getName()).getQuantity();
+
+        assertEquals(expectedQuantityOfProductLine2, returnedQuantity);
+
+        cart.decreaseQuantity("productB");
+        int expectedCartSize = 1;
+        int returnedCartSize = cart.getSize();
+
+        assertEquals(expectedCartSize,returnedCartSize);
+
+    }
+
+
+    @Test
+    void givenProductName_whenRemove_ReturnedCartSizeDecreasedBy1(){
+        testProductLine2.setQuantity(2);
+        Cart cart = new Cart();
+        cart.add(testProductLine);
+        cart.add(testProductLine2);
+
+        int expectedSize = 1;
+
+        cart.remove("productB");
+        int returnedSize = cart.getSize();
+
+        assertEquals(expectedSize, returnedSize);
+
+        cart.remove("productA");
+        expectedSize = 0;
+        returnedSize = cart.getSize();
+
+        assertEquals(expectedSize,returnedSize);
+
+    }
+
+    @Test
+    void givenProductName_whenIncrease_ReturnedCartSizeIncreasedBy1(){
+        testProductLine2.setQuantity(2);
+        Cart cart = new Cart();
+        cart.add(testProductLine);
+        cart.add(testProductLine2);
+
+        int expectedQuantityOfTestProductLine2 = 3;
+
+        cart.increaseQuantity("productB");
+        int returnedQuantity = cart.getProductLines().get("productB").getQuantity();
+
+        assertEquals(expectedQuantityOfTestProductLine2, returnedQuantity);
+
+        cart.increaseQuantity("productA");
+        int expectedQuantityOfTestProductLine = 2;
+        returnedQuantity = cart.getProductLines().get("productA").getQuantity();
+
+        assertEquals(expectedQuantityOfTestProductLine,returnedQuantity);
+
+    }
+
 }

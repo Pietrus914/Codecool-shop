@@ -26,17 +26,23 @@
     <!-- End of Bootstrap components -->
 
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
+    <script src="https://kit.fontawesome.com/05de84e1ca.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
 
-<div class="jumbotron text-center">
+<div class="customJumbotron jumbotron text-center">
     <h1>Codecool Shop</h1>
+
 </div>
-<div id="optionLine" >
-    <div class="card-text">
-        <a class="btn btn-success" href="/cart">Cart</a>
+<div class="container">
+    <div id="optionLine" >
+        <div class="card-text">
+            <a class="btn btn-success" href="/cart">Cart</a>
+            <span class="cartQuantity" th:if="${cart.getSize > 0}" th:text="${cart.getQuantity}">Quantity</span>
+        </div>
     </div>
+
 </div>
 
 <div class="container">
