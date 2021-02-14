@@ -11,7 +11,7 @@ public class PaymentProviderDaoMem implements PaymentProviderDao{
     private static PaymentProviderDaoMem instance = null;
 
 
-    private PaymentProviderDaoMem getInstance() {
+    public static PaymentProviderDaoMem getInstance() {
         if (instance == null) {
             instance = new PaymentProviderDaoMem();
         }

@@ -29,6 +29,11 @@
 
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>
     <script src="https://kit.fontawesome.com/05de84e1ca.js" crossorigin="anonymous"></script>
+    <script
+            function setTwoNumberDecimal(event) {
+            this.value = parseFloat(this.value).toFixed(3);
+            }>
+    </script>
 </head>
 <body>
 <div class="customJumbotron jumbotron text-center">
@@ -54,8 +59,8 @@
         <thead>
         <tr>
             <!--                        <th class="tableHeadField"></th>-->
-            <th class="tableHeadField">Credit Card</th>
             <th class="tableHeadField">PayPal</th>
+            <th class="tableHeadField">Credit Card</th>
             <th class="tableHeadField"></th>
         </tr>
         </thead>
@@ -83,7 +88,7 @@
         <tr>
             <td>
                 Card holder:
-                <input class="inputPaymentInf" type="text">
+                <input class="inputPaymentInf" type="text" allign="right">
             </td>
             <td>
                 Password:
@@ -93,13 +98,13 @@
         <tr>
             <td>
                 Expiry date:
-                <input class="inputPaymentInf" type="date">
+                <input class="inputPaymentInf" type="month">
             </td>
         </tr>
         <tr>
             <td>
                 CVV code:
-                <input class="inputPaymentInf" type="number">
+                <input class="inputPaymentInf" type="number" onchange="setTwoNumberDecimal" min="0" max="999" step="1" value="000" />
             </td>
         </tr>
         </tbody>
