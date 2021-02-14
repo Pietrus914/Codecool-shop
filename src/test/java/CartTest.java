@@ -101,12 +101,12 @@ class CartTest {
 
         int expectedQuantityOfTestProductLine2 = 3;
 
-        cart.increaseQuantity(2);
+        cart.increaseQuantity(2, 1);
         int returnedQuantity = cart.getProductLines().get(2).getQuantity();
 
         assertEquals(expectedQuantityOfTestProductLine2, returnedQuantity);
 
-        cart.increaseQuantity(1);
+        cart.increaseQuantity(1, 1);
         int expectedQuantityOfTestProductLine = 2;
         returnedQuantity = cart.getProductLines().get(1).getQuantity();
 

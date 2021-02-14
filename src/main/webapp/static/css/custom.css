@@ -176,3 +176,17 @@ div .active {
     height: auto;
 }
 
+.test {
+    text-align: center;
+    width: 64px;
+    appearance: none;
+    font-size: 14px;
+    height: 40px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
