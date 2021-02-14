@@ -54,11 +54,11 @@
 <div class="container">
 <!--    <div id="cartContainer">-->
 <!--        <div id="content">-->
-            <table class="table">
+            <table class="tableCustom table">
                 <thead>
                     <tr>
-<!--                        <th class="tableHeadField"></th>-->
                         <th class="tableHeadField">Product</th>
+                        <th class="tableHeadField" >Name</th>
                         <th class="tableHeadField" >Delivery time</th>
                         <th class="tableHeadField" >Price</th>
                         <th class="tableHeadField" >Qty</th>
@@ -69,20 +69,24 @@
                 </thead>
                 <tbody>
                     <tr th:each="productLine : ${productsLines.values()}" >
-<!--                        <td class="tableField" id="imageCol" > <img class="" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${productLine.product.id} + '.jpg'" alt="" /> </td>-->
+                        <td class="tableField" id="imageCol" ><img class="imageCol" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${productLine.product.id} + '.jpg'" alt="" /> </td>
                         <td class="tableField" id="productName" th:text="${productLine.product.getName}">Product</td>
                         <td class="tableField" id="deliveryTime" > 48h </td>
                         <td class="tableField" id="defaultPrice" th:text="${productLine.product.getPrice}">Price</td>
                         <td class="tableField" id="quantityBox">
-                            <a th:href="@{/cart/update(name=${productLine.product.getName}, action='decrease')}" >
-                                <i class="fas fa-minus"></i>
-                            </a>
-                            <div id="quantity" th:text="${productLine.getQuantity}"> Quantity </div>
-                            <a th:href="@{/cart/update(name=${productLine.product.getName}, action='increase')}" ><i class="fas fa-plus"></i></a>
+                            <div class="quantityBox">
+                                <a th:href="@{/cart/update(id=${productLine.product.getId}, action='decrease')}" >
+                                    <i class="fas fa-minus"></i>
+                                </a>
+                                <div id="quantity" th:text="${productLine.getQuantity}"> Quantity </div>
+                                <a th:href="@{/cart/update(id=${productLine.product.getId}, action='increase')}" >
+                                    <i class="fas fa-plus"></i>
+                                </a>
+                            </div>
                         </td>
                         <td class="tableField" id="subtotal" th:text="${productLine.getTotalPriceString}">SubTotalPrice</td>
                         <td class="tableField" id="remove" >
-                            <a th:href="@{/cart/update(name=${productLine.product.getName}, action='remove')}" >
+                            <a th:href="@{/cart/update(id=${productLine.product.getId}, action='remove')}" >
                                 <i class="far fa-trash-alt"></i>
                             </a>
                         </td>
