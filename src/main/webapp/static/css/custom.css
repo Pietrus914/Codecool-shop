@@ -72,7 +72,6 @@
 }
 
 .table {
-    /*display: block;*/
     width: 100%;
     table-layout: initial;
     margin-top: 3rem;
@@ -81,6 +80,7 @@
 table td, table th{
     padding-right: 5rem;
     text-align: center;
+
 }
 
 table thead, table tbody, table tr   {
@@ -92,15 +92,16 @@ table th, #totalPrice, #totalPriceLabel  {
     font-weight: bolder ;
 }
 
+.table.tableCustom td {
+    vertical-align: unset;
+    align-content: center;
+}
 
 
 #optionLine {
     display: flex;
     align-content: center;
     justify-content: flex-end;
-    /*padding: 2px 2em;*/
-    /*padding: 0 5% 2rem 5%;*/
-
 
 }
 
@@ -122,38 +123,25 @@ table th, #totalPrice, #totalPriceLabel  {
     flex: 1;
     background-color: #e9ecef;
     text-align: center;
-    /*margin: 0 auto;*/
 }
 
 .statusLine .fas {
     font-size: 1.5rem;
 }
 
-/*.statusLine > div:has(i) {*/
-/*    flex: 1;*/
-/*}*/
 
 .far , .fas {
-    /*text-decoration: none;*/
     font-size: 0.8rem;
     color: #28a745;
     padding-right: 0.5rem;
     padding-left: 0.5rem;
-    /*height: 1em;*/
-    /*text-align: center;*/
 }
 
 
-
-/*i {*/
-/*    font-size: 70%;*/
-/*}*/
-
-#quantityBox {
-    display: flex;
+.quantityBox {
+    display: inline-flex;
+    text-align: center;
 }
-
-
 
 
 div .active {
@@ -184,7 +172,7 @@ div .active {
 }
 
 .imageCol {
-    max-width: 20em;
+    max-width: 8em;
     height: auto;
 }
 
