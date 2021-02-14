@@ -30,31 +30,8 @@ public class ProductController extends HttpServlet {
         HttpSession session=req.getSession();
         if (session.getAttribute("cart") == null){
             Cart cart = new Cart();
-
-            //        *************for testing only ***********
-//            Supplier supplier1 = new Supplier("supplierFirst", "desc");
-//            Supplier supplier2 = new Supplier("supplierSecond", "desc");
-//
-//            ProductCategory category = new ProductCategory("tablet", "departament", "descr");
-//
-//            Product prodA = new Product("productA", 2.00f, "USD", "description", category, supplier1 );
-//            Product prodB = new Product("productB", 4.00f, "USD", "description", category,supplier2 );
-//            productDataStore.add(prodA);
-//            productDataStore.add(prodB);
-//
-//            ProductLine testProductLine = new ProductLine(prodA);
-//            ProductLine testProductLine2 = new ProductLine(prodB);
-//            testProductLine2.setQuantity(2);
-//            cart.add(testProductLine);
-//            cart.add(testProductLine2);
-//        *************end ***********
-
             session.setAttribute("cart", cart);
         }
-
-
-
-
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());

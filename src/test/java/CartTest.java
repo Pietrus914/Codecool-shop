@@ -1,4 +1,6 @@
 
+import com.codecool.shop.dao.ProductDao;
+import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.model.*;
 import org.junit.jupiter.api.Test;
 
@@ -17,8 +19,16 @@ class CartTest {
     ProductLine testProductLine = new ProductLine(prodA);
     ProductLine testProductLine2 = new ProductLine(prodB);
 
+//    ProductDao productDao = ProductDaoMem.getInstance();
+
+
+
+
+
     @Test
     void given2ProductsLineInCart_whenGetTotalPrice_ReturnSumOfPrices(){
+        prodA.setId(1);
+        prodB.setId(2);
         testProductLine2.setQuantity(2);
         Cart cart = new Cart();
         cart.add(testProductLine);
@@ -32,7 +42,9 @@ class CartTest {
     }
 
     @Test
-    void givenProductName_whenDecrease_ReturnedDecreasedQuantityInProperProductLine(){
+    void givenProductId_whenDecrease_ReturnedDecreasedQuantityInProperProductLine(){
+        prodA.setId(1);
+        prodB.setId(2);
         testProductLine2.setQuantity(2);
         Cart cart = new Cart();
         cart.add(testProductLine);
@@ -40,12 +52,12 @@ class CartTest {
 
         int expectedQuantityOfProductLine2 = 1;
 
-        cart.decreaseQuantity("productB");
-        int returnedQuantity = cart.getProductLines().get(testProductLine2.getProduct().getName()).getQuantity();
+        cart.decreaseQuantity(2);
+        int returnedQuantity = cart.getProductLines().get(testProductLine2.getProduct().getId()).getQuantity();
 
         assertEquals(expectedQuantityOfProductLine2, returnedQuantity);
 
-        cart.decreaseQuantity("productB");
+        cart.decreaseQuantity(2);
         int expectedCartSize = 1;
         int returnedCartSize = cart.getSize();
 
@@ -55,7 +67,9 @@ class CartTest {
 
 
     @Test
-    void givenProductName_whenRemove_ReturnedCartSizeDecreasedBy1(){
+    void givenProductId_whenRemove_ReturnedCartSizeDecreasedBy1(){
+        prodA.setId(1);
+        prodB.setId(2);
         testProductLine2.setQuantity(2);
         Cart cart = new Cart();
         cart.add(testProductLine);
@@ -63,12 +77,12 @@ class CartTest {
 
         int expectedSize = 1;
 
-        cart.remove("productB");
+        cart.remove(2);
         int returnedSize = cart.getSize();
 
         assertEquals(expectedSize, returnedSize);
 
-        cart.remove("productA");
+        cart.remove(1);
         expectedSize = 0;
         returnedSize = cart.getSize();
 
@@ -77,7 +91,9 @@ class CartTest {
     }
 
     @Test
-    void givenProductName_whenIncrease_ReturnedCartSizeIncreasedBy1(){
+    void givenProductId_whenIncrease_ReturnedCartSizeIncreasedBy1(){
+        prodA.setId(1);
+        prodB.setId(2);
         testProductLine2.setQuantity(2);
         Cart cart = new Cart();
         cart.add(testProductLine);
@@ -85,14 +101,14 @@ class CartTest {
 
         int expectedQuantityOfTestProductLine2 = 3;
 
-        cart.increaseQuantity("productB");
-        int returnedQuantity = cart.getProductLines().get("productB").getQuantity();
+        cart.increaseQuantity(2);
+        int returnedQuantity = cart.getProductLines().get(2).getQuantity();
 
         assertEquals(expectedQuantityOfTestProductLine2, returnedQuantity);
 
-        cart.increaseQuantity("productA");
+        cart.increaseQuantity(1);
         int expectedQuantityOfTestProductLine = 2;
-        returnedQuantity = cart.getProductLines().get("productA").getQuantity();
+        returnedQuantity = cart.getProductLines().get(1).getQuantity();
 
         assertEquals(expectedQuantityOfTestProductLine,returnedQuantity);
 

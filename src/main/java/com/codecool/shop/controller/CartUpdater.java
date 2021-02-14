@@ -19,14 +19,14 @@ public class CartUpdater extends HttpServlet {
         HttpSession session = req.getSession(false);
         Cart cart = (Cart) session.getAttribute("cart");
         String action = req.getParameter("action");
-        System.out.println("action: " +action);
-        System.out.println("Product: " +req.getParameter("name"));
+//        System.out.println("action: " +action);
+//        System.out.println("Product: " +req.getParameter("name"));
         if (action.equals("remove")){
-            cart.remove(req.getParameter("name"));
+            cart.remove(Integer.parseInt(req.getParameter("id")));
         } else if (action.equals("decrease")){
-            cart.decreaseQuantity(req.getParameter("name"));
+            cart.decreaseQuantity(Integer.parseInt(req.getParameter("id")));
         } else if (action.equals("increase")){
-            cart.increaseQuantity(req.getParameter("name"));
+            cart.increaseQuantity(Integer.parseInt(req.getParameter("id")));
         }
 
         session.setAttribute("cart", cart);

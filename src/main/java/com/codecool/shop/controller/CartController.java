@@ -26,11 +26,7 @@ public class CartController extends HttpServlet {
         context.setVariable("productsLines", cart.getProductLines());
         context.setVariable("cart", cart);
 
-        System.out.println("W koszyku: " + cart.getSize());
-
         engine.process("cart/cartView.html", context, resp.getWriter());
-
-
     }
 }
 

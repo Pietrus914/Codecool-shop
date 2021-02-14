@@ -8,15 +8,15 @@ public class Cart {
 
 
     private String currency;
-    private Map<String, ProductLine> productLines;
+    private Map<Integer, ProductLine> productLines;
 
     public Cart(){
-        this.productLines = new HashMap<String, ProductLine>();
+        this.productLines = new HashMap<Integer, ProductLine>();
         currency = "USD";
     }
 
     public void add(ProductLine productLine){
-        productLines.put(productLine.getProduct().getName(), productLine);
+        productLines.put(productLine.getProduct().getId(), productLine);
     }
 
 
@@ -35,30 +35,30 @@ public class Cart {
 
 
 
-    public Map<String, ProductLine> getProductLines() {
+    public Map<Integer, ProductLine> getProductLines() {
         return productLines;
     }
 
-    public void setProductLines(Map<String, ProductLine> productLines) {
+    public void setProductLines(Map<Integer, ProductLine> productLines) {
         this.productLines = productLines;
     }
 
 
-    public void remove(String name){
-            productLines.remove(name);
+    public void remove(int id){
+            productLines.remove(id);
     }
 
-    public void decreaseQuantity(String name){
-        ProductLine line = productLines.get(name);
+    public void decreaseQuantity(int id){
+        ProductLine line = productLines.get(id);
         if (line.getQuantity() > 1){
-            productLines.get(name).changeQuantity(-1);
+            productLines.get(id).changeQuantity(-1);
         } else if (line.getQuantity() == 1){
-            productLines.remove(name);
+            productLines.remove(id);
         }
     }
 
-    public void increaseQuantity(String name){
-        ProductLine line = productLines.get(name);
+    public void increaseQuantity(int id){
+        ProductLine line = productLines.get(id);
         line.changeQuantity(1);
     }
 
