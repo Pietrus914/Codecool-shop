@@ -28,6 +28,7 @@ public class PaymentController extends HttpServlet {
         context.setVariable("totalPrice", 110);
 
         context.setVariable("paymentProvider", Arrays.asList("Paypal", "Card", "Cash"));//paymentproviderdao.getPayment
-        engine.process("payment.html", context, resp.getWriter());
+        context.setVariable("cart", session.getAttribute("cart"));
+        engine.process("payment/payment.html", context, resp.getWriter());
     }
 }
