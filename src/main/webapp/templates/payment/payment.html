@@ -5,7 +5,7 @@
     <meta name="author" content="Codecool"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
-    <title>Codecool Shop - Cart</title>
+    <title>Codecool Shop - Payment</title>
 
     <!-- Bootstrap components -->
     <!-- Latest compiled and minified Jquery -->
@@ -31,13 +31,13 @@
     <script src="https://kit.fontawesome.com/05de84e1ca.js" crossorigin="anonymous"></script>
     <script
             function setTwoNumberDecimal(event) {
-            this.value = parseFloat(this.value).toFixed(3);
+            this.value=parseFloat(this.value).toFixed(3);
             }>
     </script>
 </head>
 <body>
 <div class="customJumbotron jumbotron text-center">
-    <h2>CART</h2>
+    <h2>Payment</h2>
 </div>
 <div class="container">
     <div id="optionLine">
@@ -47,7 +47,7 @@
 
         </div>
         <div class="card-text">
-            <a class="btn btn-success" href="/">Back</a>
+            <a class="btn btn-success" href="/order">Back</a>
         </div>
     </div>
 
@@ -55,64 +55,72 @@
 
 </div>
 <div class="container">
+
     <table class="table">
-        <thead>
-        <tr>
-            <!--                        <th class="tableHeadField"></th>-->
-            <th class="tableHeadField">PayPal</th>
-            <th class="tableHeadField">Credit Card</th>
-            <th class="tableHeadField"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>
-                <img class="" src="/static/img/paypal-logo.jpg" alt="paypal" style="height:128px;">
-                <input type="radio" name="payment" value="PayPal" style="height:30px; width:30px;">
-            </td>
-            <td>
-                <img class="" src="/static/img/creditcard.jpg" alt="credit card" style="height:128px;">
-                <input type="radio" name="payment" value="PayPal" style="height:30px; width:30px;">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Card number:
-                <input class="inputPaymentInf" type="text">
-            </td>
-            <td>
-                Email:
-                <input class="inputPaymentInf" id="{{ username }}" name="{{ username }}" type="text">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Card holder:
-                <input class="inputPaymentInf" type="text" allign="right">
-            </td>
-            <td>
-                Password:
-                <input class="inputPaymentInf" id="{{ password }}" name="{{ password }}" type="password">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Expiry date:
-                <input class="inputPaymentInf" type="month">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                CVV code:
-                <input class="inputPaymentInf" type="number" onchange="setTwoNumberDecimal" min="0" max="999" step="1" value="000" />
-            </td>
-        </tr>
-        </tbody>
-        <tr>
-            <td id="totalPriceLabel" colspan="4">TOTAL PRICE:</td>
-            <td id="totalPrice" th:text="${cart.getTotalPriceString}">TotalPrice</td>
-            <td></td>
-        </tr>
+        <form action="/payment" method="post">
+            <thead>
+            <tr>
+                <!--                        <th class="tableHeadField"></th>-->
+                <th class="tableHeadField">PayPal</th>
+                <th class="tableHeadField">Credit Card</th>
+                <th class="tableHeadField"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <img class="" src="/static/img/paypal-logo.jpg" alt="paypal" style="height:128px;">
+                    <input type="radio" name="payment" value="PayPal" style="height:30px; width:30px;">
+                </td>
+                <td>
+                    <img class="" src="/static/img/creditcard.jpg" alt="credit card" style="height:128px;">
+                    <input type="radio" name="payment" value="Credit Card" style="height:30px; width:30px;">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Card number:
+                    <input class="inputPaymentInf" type="tel" name="cardNumber" placeholder="1111-2222-3333-4444" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}">
+                </td>
+                <td>
+                    Email:
+                    <input class="inputPaymentInf" id="email" name="email" type="text" placeholder="abc@gmail.com">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Card holder:
+                    <input class="inputPaymentInf" type="text" name="cardHolder">
+                </td>
+                <td>
+                    Password:
+                    <input class="inputPaymentInf" id="password" name="password" type="password">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Expiry date:
+                    <input class="inputPaymentInf" type="month" name="expiryDate"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    CVV code:
+                    <input class="inputPaymentInf" type="number" onchange="setTwoNumberDecimal" min="0" max="999"
+                           step="1" value="000" name="cvvCode"/>
+                </td>
+            </tr>
+
+            </tbody>
+            <tr>
+                <td>
+                    <input class="btn btn-success" type="submit" value="SAVE">
+                </td>
+                <td id="totalPriceLabel" colspan="4">TOTAL PRICE:</td>
+                <td id="totalPrice" th:text="${cart.getTotalPriceString}">TotalPrice</td>
+                <td></td>
+            </tr>
+        </form>
     </table>
 </div>
 <div th:replace="footer.html :: copy"></div>
