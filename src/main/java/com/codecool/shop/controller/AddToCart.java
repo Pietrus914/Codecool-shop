@@ -22,8 +22,13 @@ public class AddToCart extends HttpServlet {
         Cart cart = (Cart) session.getAttribute("cart");
 
         ProductDao productDataStore = ProductDaoMem.getInstance();
+        ProductLine productLine = new ProductLine(productDataStore.find(Integer.parseInt(req.getParameter("id"))));
 
-        cart.add(new ProductLine(productDataStore.find(Integer.parseInt(req.getParameter("id")))));
+        if (cart.getProductLines().get(productLine.getProduct().getId()) != null) {
+            cart.increaseQuantity(productLine.getProduct().getId());
+        } else {
+            cart.add(new ProductLine(productDataStore.find(Integer.parseInt(req.getParameter("id")))));
+        }
 
         resp.sendRedirect("/");
     }
