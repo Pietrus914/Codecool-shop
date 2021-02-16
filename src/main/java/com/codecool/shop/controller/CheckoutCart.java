@@ -2,6 +2,11 @@ package com.codecool.shop.controller;
 
 import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.model.Cart;
+import com.codecool.shop.model.Order;
+import com.codecool.shop.model.log.Log;
+import com.codecool.shop.model.log.LogItem;
+import com.codecool.shop.model.log.LogItemFactory;
+import com.codecool.shop.model.log.LogName;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -20,6 +25,9 @@ public class CheckoutCart extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
+        Order order = new Order(cart);
+        session.setAttribute("order", order);
+        session.setAttribute("log", LogItemFactory.create(LogName.CREATE,order));
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
@@ -51,6 +59,10 @@ public class CheckoutCart extends HttpServlet {
 
         HttpSession session = req.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
+        Order order = (Order) session.getAttribute("order");
+        order.setUser(firstName);
+        Log log = (Log) session.getAttribute("log");
+        log.add(LogItemFactory.create(LogName.ADD_ADDRESS,order));
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
