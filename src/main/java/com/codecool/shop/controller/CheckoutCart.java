@@ -1,8 +1,6 @@
 package com.codecool.shop.controller;
 
 import com.codecool.shop.config.TemplateEngineUtil;
-import com.codecool.shop.dao.implementation.PaymentProviderDao;
-import com.codecool.shop.dao.implementation.PaymentProviderDaoMem;
 import com.codecool.shop.model.Cart;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
@@ -14,48 +12,44 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Arrays;
 
-@WebServlet(urlPatterns = {"/payment"})
-public class PaymentController extends HttpServlet {
-
+@WebServlet(urlPatterns = {"/order"})
+public class CheckoutCart extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PaymentProviderDao paymentDataStore = PaymentProviderDaoMem.getInstance();
-
-        HttpSession session=req.getSession();
+        HttpSession session = req.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
-
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
         context.setVariable("totalPrice", cart.getTotalPrice());
-        context.setVariable("paymentProvider", paymentDataStore.find(1));//paymentproviderdao.getPayment
         context.setVariable("cart", session.getAttribute("cart"));
-        engine.process("payment/payment.html", context, resp.getWriter());
-
+        engine.process("order/order.html", context, resp.getWriter());
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String payment = req.getParameter("payment");
-        String password = req.getParameter("password");
-        String cardNumber = req.getParameter("cardNumber");
+        String firstName = req.getParameter("firstName");
+        String lastName = req.getParameter("lastName");
         String email = req.getParameter("email");
-        String cardHolder = req.getParameter("cardHolder");
-        String expiryDate = req.getParameter("expiryDate");
-        String cvvCode = req.getParameter("cvvCode");
+        String phoneNumber = req.getParameter("phoneNumber");
 
-        System.out.println(payment);
-        System.out.println(password);
-        System.out.println(cardNumber);
+        String country = req.getParameter("country");
+        String street = req.getParameter("street");
+        String postCode = req.getParameter("postCode");
+        String city = req.getParameter("city");
+
+        System.out.println(firstName);
+        System.out.println(lastName);
         System.out.println(email);
-        System.out.println(cardHolder);
-        System.out.println(expiryDate);
-        System.out.println(cvvCode);
+        System.out.println(phoneNumber);
+        System.out.println(country);
+        System.out.println(street);
+        System.out.println(postCode);
+        System.out.println(city);
 
-        HttpSession session=req.getSession();
+        HttpSession session = req.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
@@ -64,7 +58,7 @@ public class PaymentController extends HttpServlet {
 
         context.setVariable("cart", session.getAttribute("cart"));
 
-        engine.process("finish/finish.html", context, resp.getWriter());
+        engine.process("payment/payment.html", context, resp.getWriter());
     }
-
 }
+
