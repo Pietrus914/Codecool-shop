@@ -61,7 +61,7 @@ public class PaymentController extends HttpServlet {
         System.out.println(cvvCode);
 
         HttpSession session=req.getSession();
-        Cart cart = (Cart) session.getAttribute("cart");
+//        Cart cart = (Cart) session.getAttribute("cart");
         Order order = (Order) session.getAttribute("order");
         order.setPayment(new Payment(payment));
         Log log = (Log) session.getAttribute("log");
@@ -72,9 +72,10 @@ public class PaymentController extends HttpServlet {
         WebContext context = new WebContext(req, resp, req.getServletContext());
 
 
-        context.setVariable("cart", session.getAttribute("cart"));
+//        context.setVariable("cart", session.getAttribute("cart"));
 
-        engine.process("finish/finish.html", context, resp.getWriter());
+//        engine.process("finish/finish.html", context, resp.getWriter());
+        resp.sendRedirect("/finish");
     }
 
 }

@@ -49,7 +49,9 @@
 
     <div th:replace="cart/status.html :: status(active='finish')"></div>
     <div class="container">
+        <div th:text="${successful} ? 'ORDER FINISHED SUCCESFULLY - KEEP WAITING FOR YOUR PRODUCTS' : 'TRY AGAIN'">MESSAGE</div>
         <table class="table">
+
         </table>
     </div>
 </div>

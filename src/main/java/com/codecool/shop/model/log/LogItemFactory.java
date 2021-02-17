@@ -20,8 +20,8 @@ public class LogItemFactory {
                 break;
             case ERROR:
                 item = new LogItem(name, order.getId());
-                builder.append("error  ");
-                builder.append(order.getCart().getSize());
+//                builder.append("error  ");
+//                builder.append(order.getCart().getSize());
                 item.setDescription(builder.toString());
                 break;
             case ADD_ADDRESS:
@@ -42,6 +42,7 @@ public class LogItemFactory {
                 item = new LogItem(name, order.getId());
                 builder.append("Order finished successfully");
                 item.setDescription(builder.toString());
+                break;
             default:
                 item = null;
 
