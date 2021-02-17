@@ -73,5 +73,7 @@ public class Cart {
         return productLines.size();
     }
 
+    public void clear() {productLines.clear();}
+
 
 }

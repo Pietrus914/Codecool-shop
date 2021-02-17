@@ -4,6 +4,11 @@ import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.dao.implementation.PaymentProviderDao;
 import com.codecool.shop.dao.implementation.PaymentProviderDaoMem;
 import com.codecool.shop.model.Cart;
+import com.codecool.shop.model.Order;
+import com.codecool.shop.model.Payment;
+import com.codecool.shop.model.log.Log;
+import com.codecool.shop.model.log.LogItemFactory;
+import com.codecool.shop.model.log.LogName;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -47,24 +52,30 @@ public class PaymentController extends HttpServlet {
         String expiryDate = req.getParameter("expiryDate");
         String cvvCode = req.getParameter("cvvCode");
 
-        System.out.println(payment);
-        System.out.println(password);
-        System.out.println(cardNumber);
-        System.out.println(email);
-        System.out.println(cardHolder);
-        System.out.println(expiryDate);
-        System.out.println(cvvCode);
+//        System.out.println(payment);
+//        System.out.println(password);
+//        System.out.println(cardNumber);
+//        System.out.println(email);
+//        System.out.println(cardHolder);
+//        System.out.println(expiryDate);
+//        System.out.println(cvvCode);
 
         HttpSession session=req.getSession();
-        Cart cart = (Cart) session.getAttribute("cart");
+//        Cart cart = (Cart) session.getAttribute("cart");
+        Order order = (Order) session.getAttribute("order");
+        order.setPayment(new Payment(payment));
+        Log log = (Log) session.getAttribute("log");
+        log.add(LogItemFactory.create(LogName.VALIDATE_PAYMENT, order));
+
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
 
 
-        context.setVariable("cart", session.getAttribute("cart"));
+//        context.setVariable("cart", session.getAttribute("cart"));
 
-        engine.process("finish/finish.html", context, resp.getWriter());
+//        engine.process("finish/finish.html", context, resp.getWriter());
+        resp.sendRedirect("/finish");
     }
 
 }
