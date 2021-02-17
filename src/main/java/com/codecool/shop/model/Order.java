@@ -1,15 +1,13 @@
 package com.codecool.shop.model;
 
-import com.google.gson.annotations.Expose;
 
 public class Order implements Gsonable {
 
     private int id;
-
     private Cart cart;
-
     private Payment payment;
     private Customer customer;
+
 
     public Order(Cart cart){
         this.cart = cart;

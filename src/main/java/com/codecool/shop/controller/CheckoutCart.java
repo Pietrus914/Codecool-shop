@@ -1,6 +1,10 @@
 package com.codecool.shop.controller;
 
 import com.codecool.shop.config.TemplateEngineUtil;
+import com.codecool.shop.dao.LogDao;
+import com.codecool.shop.dao.OrderDao;
+import com.codecool.shop.dao.implementation.LogDaoMem;
+import com.codecool.shop.dao.implementation.OrderDaoMem;
 import com.codecool.shop.model.Cart;
 import com.codecool.shop.model.Customer;
 import com.codecool.shop.model.Order;
@@ -27,7 +31,13 @@ public class CheckoutCart extends HttpServlet {
         HttpSession session = req.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
         Order order = new Order(cart);
+        OrderDao orderDao = OrderDaoMem.getInstance();
+        orderDao.add(order);
+
         Log log = new Log();
+        LogDao logDao = LogDaoMem.getInstance();
+        logDao.add(log);
+
         log.add(LogItemFactory.create(LogName.CREATE,order));
         session.setAttribute("order", order);
         session.setAttribute("log", log);

@@ -16,7 +16,7 @@ public class OrderDaoMem implements OrderDao {
 
    private List<Order> data = new ArrayList<>();
    private static OrderDaoMem instance = null;
-//   private static String path = "/";
+
 
    private OrderDaoMem(){}
 
@@ -32,15 +32,12 @@ public class OrderDaoMem implements OrderDao {
     public void add(Order order) {
         order.setId(data.size() + 1);
         data.add(order);
-
-        JsonWriter.saveToFile(order);
     }
 
-
-
-
-
-
+    @Override
+    public void save(Order order) {
+        JsonWriter.saveToFile(order, "orders/order");
+    }
 
 
 }
