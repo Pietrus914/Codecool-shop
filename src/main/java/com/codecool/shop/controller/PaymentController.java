@@ -52,13 +52,13 @@ public class PaymentController extends HttpServlet {
         String expiryDate = req.getParameter("expiryDate");
         String cvvCode = req.getParameter("cvvCode");
 
-        System.out.println(payment);
-        System.out.println(password);
-        System.out.println(cardNumber);
-        System.out.println(email);
-        System.out.println(cardHolder);
-        System.out.println(expiryDate);
-        System.out.println(cvvCode);
+//        System.out.println(payment);
+//        System.out.println(password);
+//        System.out.println(cardNumber);
+//        System.out.println(email);
+//        System.out.println(cardHolder);
+//        System.out.println(expiryDate);
+//        System.out.println(cvvCode);
 
         HttpSession session=req.getSession();
 //        Cart cart = (Cart) session.getAttribute("cart");

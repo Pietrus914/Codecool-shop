@@ -6,7 +6,7 @@ import java.util.List;
 public class Payment extends  BaseModel{
 
 
-    private String name;
+//    private String name;
     private int status;
     private List<Payment> payments;
 

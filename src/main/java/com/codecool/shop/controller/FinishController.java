@@ -1,6 +1,8 @@
 package com.codecool.shop.controller;
 
 import com.codecool.shop.config.TemplateEngineUtil;
+import com.codecool.shop.dao.OrderDao;
+import com.codecool.shop.dao.implementation.OrderDaoMem;
 import com.codecool.shop.dao.implementation.PaymentProviderDao;
 import com.codecool.shop.dao.implementation.PaymentProviderDaoMem;
 import com.codecool.shop.model.Cart;
@@ -35,11 +37,14 @@ public class FinishController extends HttpServlet {
         Log log = (Log) req.getSession().getAttribute("log") ;
 
         Random random = new Random();
-        Boolean status = random.nextBoolean();
+//        Boolean status = random.nextBoolean();
+        Boolean status = true;
 
 
         if (status){
             log.add(LogItemFactory.create(LogName.FINISHED, order));
+            OrderDao orderDao = OrderDaoMem.getInstance();
+            orderDao.add(order);
             cart.clear();
             req.getSession().removeAttribute("order");
 
