@@ -1,0 +1,24 @@
+{
+  "id": 1,
+  "cart": {
+    "currency": "USD",
+    "productLines": {}
+  },
+  "payment": {
+    "status": 1,
+    "payments": [],
+    "id": 0,
+    "name": "PayPal"
+  },
+  "customer": {
+    "id": 0,
+    "firstName": "dsa",
+    "lastName": "dsa",
+    "email": "dsa",
+    "city": "dsa",
+    "country": "dsa",
+    "postCode": "66-555",
+    "street": "das",
+    "phoneNumber": "888-999-444"
+  }
+}

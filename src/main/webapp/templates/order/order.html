@@ -42,8 +42,13 @@
             <span class="cartQuantity" th:if="${cart.getSize > 0}" th:text="${cart.getQuantity}">Quantity</span>
 
         </div>
+
         <div class="card-text">
-            <a class="btn btn-success" href="/">Back</a>
+            <a class="btn btn-success" href="/">Main</a>
+        </div>
+
+        <div class="card-text">
+            <a class="btn btn-success" href="/cart">Back</a>
         </div>
     </div>
 
