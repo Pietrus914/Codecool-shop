@@ -27,7 +27,7 @@ public class LogItemFactory {
             case ADD_ADDRESS:
                 item = new LogItem(name, order.getId());
                 builder.append("user:  ");
-                builder.append(order.getUser());
+                builder.append(order.getCustomer().getId());
                 item.setDescription(builder.toString());
                 break;
             case VALIDATE_PAYMENT:
@@ -35,7 +35,7 @@ public class LogItemFactory {
                 builder.append("payment Method:  ");
                 builder.append(order.getPayment().getName());
                 builder.append("payment status:  ");
-//                builder.append(order.getPayment().getStatus());
+                builder.append(order.getPayment().getStatus());
                 item.setDescription(builder.toString());
                 break;
             case FINISHED:

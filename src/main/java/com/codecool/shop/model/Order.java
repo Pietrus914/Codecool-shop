@@ -5,7 +5,7 @@ public class Order {
     private int id;
     private Cart cart;
     private Payment payment;
-    private String user;
+    private Customer customer;
 
     public Order(Cart cart){
         this.cart = cart;
@@ -35,11 +35,11 @@ public class Order {
         this.payment = payment;
     }
 
-    public String getUser() {
-        return user;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }

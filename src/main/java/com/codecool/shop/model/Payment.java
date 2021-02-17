@@ -7,11 +7,12 @@ public class Payment extends  BaseModel{
 
 
     private String name;
+    private int status;
     private List<Payment> payments;
 
     public Payment(String name) {
         super(name);
-        this.name = name;
+//        this.name = name;
         this.payments = new ArrayList<>();
     }
 
@@ -23,11 +24,20 @@ public class Payment extends  BaseModel{
         this.payments = payments;
     }
 
-    public String getName() {
-        return name;
+//    public String getName() {
+//        return name;
+//    }
+//
+//    public void setName(String name) {
+//        this.name = name;
+//    }
+
+    public int getStatus() {
+        return status;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setStatus(int status) {
+        this.status = status;
     }
+
 }

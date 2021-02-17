@@ -4,6 +4,11 @@ import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.dao.implementation.PaymentProviderDao;
 import com.codecool.shop.dao.implementation.PaymentProviderDaoMem;
 import com.codecool.shop.model.Cart;
+import com.codecool.shop.model.Order;
+import com.codecool.shop.model.Payment;
+import com.codecool.shop.model.log.Log;
+import com.codecool.shop.model.log.LogItemFactory;
+import com.codecool.shop.model.log.LogName;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -57,6 +62,11 @@ public class PaymentController extends HttpServlet {
 
         HttpSession session=req.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
+        Order order = (Order) session.getAttribute("order");
+        order.setPayment(new Payment(payment));
+        Log log = (Log) session.getAttribute("log");
+        log.add(LogItemFactory.create(LogName.VALIDATE_PAYMENT, order));
+
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
