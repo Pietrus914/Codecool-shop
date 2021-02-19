@@ -13,6 +13,7 @@ import com.codecool.shop.model.log.Log;
 import com.codecool.shop.model.log.LogItem;
 import com.codecool.shop.model.log.LogItemFactory;
 import com.codecool.shop.model.log.LogName;
+import com.codecool.shop.util.SendEmail;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -42,9 +43,10 @@ public class FinishController extends HttpServlet {
         Boolean status = random.nextBoolean();
 //        Boolean status = false;
 
-
+        SendEmail sendEmail = new SendEmail();
 
         if (status){
+            sendEmail.sendEmail(order);
             log.add(LogItemFactory.create(LogName.FINISHED, order));
             LogDaoMem.getInstance().save(log);
             log.clear();

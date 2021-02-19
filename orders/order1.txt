@@ -1,0 +1,44 @@
+{
+  "id": 1,
+  "cart": {
+    "currency": "USD",
+    "productLines": {
+      "3": {
+        "product": {
+          "defaultPrice": 89.0,
+          "defaultCurrency": "USD",
+          "productCategory": {
+            "department": "Hardware",
+            "id": 1,
+            "name": "Tablet"
+          },
+          "supplier": {
+            "id": 1,
+            "name": "Amazon"
+          },
+          "id": 3,
+          "name": "Amazon Fire HD 8",
+          "description": "Amazon\u0027s latest Fire HD 8 tablet is a great value for media consumption."
+        },
+        "quantity": 1
+      }
+    }
+  },
+  "payment": {
+    "status": 1,
+    "payments": [],
+    "id": 0,
+    "name": "PayPal"
+  },
+  "customer": {
+    "id": 0,
+    "firstName": "Jakub",
+    "lastName": "Zielinski",
+    "email": "kuba45624@wp.pl",
+    "city": "Bochnia",
+    "country": "Polska",
+    "postCode": "32-700",
+    "street": "Langera 2/32",
+    "phoneNumber": "123-123-123"
+  }
+}
