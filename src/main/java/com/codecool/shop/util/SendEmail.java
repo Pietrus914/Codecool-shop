@@ -12,7 +12,7 @@ import javax.mail.internet.MimeMessage;
 
 public class SendEmail {
     private final String fromEmail = "kondradkowa696@gmail.com";
-    private final String password = "Sedes123$";
+    private final String password = "Java123$";
     private Order order;
 
     public void sendEmail(Order order) {
