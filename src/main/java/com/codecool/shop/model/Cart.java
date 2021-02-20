@@ -75,5 +75,15 @@ public class Cart {
 
     public void clear() {productLines.clear();}
 
+    public String getItems() {
+        String items = "";
+
+        for (ProductLine value :productLines.values()) {
+            items += value.getProduct().getName() + " price " + value.getProduct().getPrice() + " x "
+                    + value.getQuantity() + " = " + value.getTotalPriceString() + "\n";
+        }
+        return items;
+    }
+
 
 }

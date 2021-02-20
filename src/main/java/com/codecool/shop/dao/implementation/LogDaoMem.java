@@ -27,8 +27,8 @@ public class LogDaoMem implements LogDao {
     }
 
     @Override
-    public void save(Log log) {
-        JsonWriter.saveToFile(log, "logs/logHistoryForOrder");
+    public void save(Log log, String data) {
+        JsonWriter.saveToFile(log, "logs/logHistoryForOrder", data);
     }
 
 

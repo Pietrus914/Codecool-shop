@@ -18,19 +18,19 @@ public class JsonWriter {
         return serializedGson;
     }
 
-    public static void saveToFile(Gsonable object, String path){
+    public static void saveToFile(Gsonable object, String path, String data){
         String serializedJson = serialize(object);
         try {
-            writeToJsonFile(serializedJson, object.getId(), path);
+            writeToJsonFile(serializedJson, object.getId(), path, data);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
 
-    public static void writeToJsonFile(String jsonString, int id, String path) throws IOException {
+    public static void writeToJsonFile(String jsonString, int id, String path, String data) throws IOException {
 
-        BufferedWriter writer = new BufferedWriter(new FileWriter(path + id + ".txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(path + id + "data" + data + ".txt"));
         writer.write(jsonString);
         writer.close();
     }

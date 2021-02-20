@@ -55,6 +55,18 @@
     </build>
 
     <dependencies>
+
+
+        <dependency>
+            <groupId>org.lucee</groupId>
+            <artifactId>activation</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.lucee</groupId>
+            <artifactId>javamail</artifactId>
+            <version>1.6.2</version>
+        </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
