@@ -35,8 +35,8 @@ public class OrderDaoMem implements OrderDao {
     }
 
     @Override
-    public void save(Order order) {
-        JsonWriter.saveToFile(order, "orders/order");
+    public void save(Order order, String data) {
+        JsonWriter.saveToFile(order, "orders/order", data);
     }
 
 

@@ -13,6 +13,7 @@ import com.codecool.shop.model.log.Log;
 import com.codecool.shop.model.log.LogItem;
 import com.codecool.shop.model.log.LogItemFactory;
 import com.codecool.shop.model.log.LogName;
+import com.codecool.shop.util.SendEmail;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -22,7 +23,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.crypto.Data;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 @WebServlet(urlPatterns = {"/finish"})
@@ -42,16 +46,18 @@ public class FinishController extends HttpServlet {
         Boolean status = random.nextBoolean();
 //        Boolean status = false;
 
-
+        SendEmail sendEmail = new SendEmail();
+        String data = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss"));
 
         if (status){
+            sendEmail.sendEmail(order);
             log.add(LogItemFactory.create(LogName.FINISHED, order));
-            LogDaoMem.getInstance().save(log);
+            LogDaoMem.getInstance().save(log, data);
             log.clear();
             req.getSession().removeAttribute("log");
 
             order.getPayment().setStatus(1);
-            OrderDaoMem.getInstance().save(order);
+            OrderDaoMem.getInstance().save(order, data);
             cart.clear();
             req.getSession().removeAttribute("order");
 
@@ -59,9 +65,9 @@ public class FinishController extends HttpServlet {
             LogItem item = LogItemFactory.create(LogName.ERROR, order);
             item.setDescription("payment failed");
             log.add(item);
-            LogDaoMem.getInstance().save(log);
+            LogDaoMem.getInstance().save(log, data);
             order.getPayment().setStatus(0);
-            OrderDaoMem.getInstance().save(order);
+            OrderDaoMem.getInstance().save(order, data);
         }
 
         context.setVariable("cart", cart);
