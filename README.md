@@ -1,4 +1,16 @@
-# Codecool shop (sprint 1)
+Technology:
+- Java 11
+- Thymeleaf
+- DAO Pattern
+- Servlet
+
+Group project (4 people)
+My tasks:
+- checkout cards (no. 8)
+- payments (no. 9)
+
+
+# Codecool shop
 
 ## Story
 
