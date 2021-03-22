@@ -63,7 +63,11 @@
                         <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
                     </div>
                     <div class="card-text">
-                        <a class="btn btn-success" th:href="@{/add/to/cart(id=${prod.getId()})}">Add to cart</a>
+
+                        <button class="decrease" data-th-id="decrease +  ${prod.getId()}" onclick="reply_click(this.id)"><i class="fas fa-minus"></i></button>
+                        <input type="number" class="test" value="1" data-th-id="input + ${prod.getId()}" readonly="readonly">
+                        <button class="increase" data-th-id="increase + ${prod.getId()}" onclick="reply_click(this.id)"><i class="fas fa-plus"></i></button>
+                        <a class="btn btn-success" th:id="add + ${prod.getId()}" th:href="@{/add/to/cart(id=${prod.getId()}, value='1')}" th:name="asd">Add to cart</a>
                     </div>
                 </div>
             </div>
@@ -75,4 +79,49 @@
 <div th:replace="footer.html :: copy"></div>
 
 </body>
+<script>
+    const increaseButtons = document.getElementsByClassName("increase");
+    const decreaseButtons = document.getElementsByClassName("decrease")
+    let clickedId = "";
+
+    for (const increaseBtn of increaseButtons) {
+        increaseBtn.addEventListener("click", increaseValue);
+    }
+
+    for (const decreaseBtn of decreaseButtons) {
+        decreaseBtn.addEventListener("click", decreaseValue)
+    }
+
+    function reply_click(clicked_id) {
+        clickedId = clicked_id.replace(/\D/g, "");
+    }
+    function increaseValue() {
+        const valueInput = document.getElementById("input" + clickedId);
+        valueInput.setAttribute("value", parseInt(valueInput.getAttribute("value")) + 1)
+
+
+        if (valueInput.getAttribute("value") > 0) {
+            document.getElementById("decrease" + clickedId).disabled = false;
+        }
+        setValue(valueInput.getAttribute("value"));
+    }
+
+    function decreaseValue() {
+        const valueInput = document.getElementById("input" + clickedId);
+        valueInput.setAttribute("value", parseInt(valueInput.getAttribute("value")) - 1)
+
+        if (valueInput.getAttribute("value") == 0) {
+            document.getElementById("decrease" + clickedId).disabled = true;
+        }
+        setValue(valueInput.getAttribute("value"));
+    }
+
+
+    function setValue(value){
+        const url = document.getElementById("add" + clickedId);
+        url.setAttribute("href", url.getAttribute("href").slice(0, url.getAttribute("href").indexOf("&")+1) + "value=" + value);
+
+    }
+
+</script>
 </html>

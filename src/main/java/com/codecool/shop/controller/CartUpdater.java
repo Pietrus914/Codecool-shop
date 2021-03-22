@@ -26,7 +26,7 @@ public class CartUpdater extends HttpServlet {
         } else if (action.equals("decrease")){
             cart.decreaseQuantity(Integer.parseInt(req.getParameter("id")));
         } else if (action.equals("increase")){
-            cart.increaseQuantity(Integer.parseInt(req.getParameter("id")));
+            cart.increaseQuantity(Integer.parseInt(req.getParameter("id")), 1);
         }
 
         session.setAttribute("cart", cart);

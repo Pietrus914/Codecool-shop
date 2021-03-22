@@ -57,9 +57,9 @@ public class Cart {
         }
     }
 
-    public void increaseQuantity(int id){
+    public void increaseQuantity(int id, int quantity){
         ProductLine line = productLines.get(id);
-        line.changeQuantity(1);
+        line.changeQuantity(quantity);
     }
 
     public int getQuantity() {
