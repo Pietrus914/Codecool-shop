@@ -46,6 +46,11 @@
             <span class="cartQuantity" th:if="${cart.getSize > 0}" th:text="${cart.getQuantity}">Quantity</span>
 
         </div>
+
+        <div class="card-text">
+            <a class="btn btn-success" href="/">Main</a>
+        </div>
+
         <div class="card-text">
             <a class="btn btn-success" href="/order">Back</a>
         </div>
@@ -70,11 +75,11 @@
             <tr>
                 <td>
                     <img class="" src="/static/img/paypal-logo.jpg" alt="paypal" style="height:128px;">
-                    <input type="radio" name="payment" value="PayPal" style="height:30px; width:30px;">
+                    <input type="radio" id="paypal" name="payment" value="PayPal" style="height:30px; width:30px;">
                 </td>
                 <td>
                     <img class="" src="/static/img/creditcard.jpg" alt="credit card" style="height:128px;">
-                    <input type="radio" name="payment" value="Credit Card" style="height:30px; width:30px;">
+                    <input type="radio" id="card" name="payment" value="Credit Card" style="height:30px; width:30px;">
                 </td>
             </tr>
             <tr>
