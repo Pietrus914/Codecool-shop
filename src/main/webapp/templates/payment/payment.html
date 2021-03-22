@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="author" content="Codecool"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+    <title>Codecool Shop - Payment</title>
+
+    <!-- Bootstrap components -->
+    <!-- Latest compiled and minified Jquery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <!--Latest compiled and minified Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+            crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <!-- End of Bootstrap components -->
+
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>
+    <script src="https://kit.fontawesome.com/05de84e1ca.js" crossorigin="anonymous"></script>
+    <script
+            function setTwoNumberDecimal(event) {
+            this.value=parseFloat(this.value).toFixed(3);
+            }>
+    </script>
+</head>
+<body>
+<div class="customJumbotron jumbotron text-center">
+    <h2>Payment</h2>
+</div>
+<div class="container">
+    <div id="optionLine">
+        <div class="card-text">
+            <a class="btn btn-success" href="/cart">Cart</a>
+            <span class="cartQuantity" th:if="${cart.getSize > 0}" th:text="${cart.getQuantity}">Quantity</span>
+
+        </div>
+        <div class="card-text">
+            <a class="btn btn-success" href="/order">Back</a>
+        </div>
+    </div>
+
+    <div th:replace="cart/status.html :: status(active='payment')"></div>
+
+</div>
+<div class="container">
+
+    <table class="table">
+        <form action="/payment" method="post">
+            <thead>
+            <tr>
+                <!--                        <th class="tableHeadField"></th>-->
+                <th class="tableHeadField">PayPal</th>
+                <th class="tableHeadField">Credit Card</th>
+                <th class="tableHeadField"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <img class="" src="/static/img/paypal-logo.jpg" alt="paypal" style="height:128px;">
+                    <input type="radio" name="payment" value="PayPal" style="height:30px; width:30px;">
+                </td>
+                <td>
+                    <img class="" src="/static/img/creditcard.jpg" alt="credit card" style="height:128px;">
+                    <input type="radio" name="payment" value="Credit Card" style="height:30px; width:30px;">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Card number:
+                    <input class="inputPaymentInf" type="tel" name="cardNumber" placeholder="1111-2222-3333-4444" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}">
+                </td>
+                <td>
+                    Email:
+                    <input class="inputPaymentInf" id="email" name="email" type="text" placeholder="abc@gmail.com">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Card holder:
+                    <input class="inputPaymentInf" type="text" name="cardHolder">
+                </td>
+                <td>
+                    Password:
+                    <input class="inputPaymentInf" id="password" name="password" type="password">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Expiry date:
+                    <input class="inputPaymentInf" type="month" name="expiryDate"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    CVV code:
+                    <input class="inputPaymentInf" type="number" onchange="setTwoNumberDecimal" min="0" max="999"
+                           step="1" value="000" name="cvvCode"/>
+                </td>
+            </tr>
+
+            </tbody>
+            <tr>
+                <td>
+                    <input class="btn btn-success" type="submit" value="SAVE">
+                </td>
+                <td id="totalPriceLabel" colspan="4">TOTAL PRICE:</td>
+                <td id="totalPrice" th:text="${cart.getTotalPriceString}">TotalPrice</td>
+                <td></td>
+            </tr>
+        </form>
+    </table>
+</div>
+<div th:replace="footer.html :: copy"></div>
+</body>
+</html>
