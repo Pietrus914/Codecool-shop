@@ -5,6 +5,7 @@ Technology:
 - Servlet
 
 Group project (4 people)
+
 My tasks:
 - checkout cards (no. 8)
 - payments (no. 9)
